@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HeroController : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class HeroController : MonoBehaviour
     // -- Behaviour functions -- //
     private void ChangeA()
     {
-        float rotDirection = OppositeKeys(KeyCode.Q, KeyCode.E);
+        float rotDirection = OppositeKeys(Key.Q, Key.E);
         if (rotDirection != 0)
         {
             if (a >= -180 && a <= 180)
@@ -54,10 +55,11 @@ public class HeroController : MonoBehaviour
     }
 
     // -- DRY functions -- //
-    private float OppositeKeys(KeyCode negative,KeyCode positive)
+    private float OppositeKeys(Key negative,Key positive)
     {
-        bool nPress = Input.GetKeyDown(negative);
-        bool pPress = Input.GetKeyDown(positive);
+        //bool nPress = Input.GetKeyDown(negative);
+        bool nPress = Keyboard.current[negative].isPressed;
+        bool pPress = Keyboard.current[positive].isPressed;
         if(nPress && !pPress)
         {
             return -1f;
