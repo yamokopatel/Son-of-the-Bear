@@ -6,10 +6,13 @@ public class HeroController : MonoBehaviour
     public float speed;
     private float a;
     public float aStep;
+
+    private Rigidbody rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         a = 0;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -22,6 +25,7 @@ public class HeroController : MonoBehaviour
     void FixedUpdate()
     {
         ChangeA();
+        Walk();
     }
 
     // -- Behaviour functions -- //
@@ -46,6 +50,29 @@ public class HeroController : MonoBehaviour
                 }
             }
         }
+    }
+    private void Walk()
+    {
+        float rad = a * Mathf.Deg2Rad;
+        float x = 0;
+        float z = 0;
+        float ver = OppositeKeys(Key.S, Key.W);
+        float hor = OppositeKeys(Key.A, Key.D);
+        float sM = (ver != hor ? 1f : (ver != 0f ? 0.7f : 0f));
+        if (sM == 1f)
+        {
+            if (ver != 0)
+            {
+                x = Mathf.Sin(rad) * speed * ver;
+                z = Mathf.Cos(rad) * speed * ver;
+            }
+            else
+            {
+                x = Mathf.Cos(rad) * speed * hor;
+                z = -Mathf.Sin(rad) * speed * hor;
+            }
+        }
+        rb.linearVelocity = new Vector3(x, rb.linearVelocity.y, z);
     }
 
     // -- Get functions -- //
