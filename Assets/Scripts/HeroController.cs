@@ -58,7 +58,8 @@ public class HeroController : MonoBehaviour
         float z = 0;
         float ver = OppositeKeys(Key.S, Key.W);
         float hor = OppositeKeys(Key.A, Key.D);
-        float sM = (ver != hor ? 1f : (ver != 0f ? 0.7f : 0f));
+        //        float sM = (ver != hor ? 1f : (ver != 0f ? 0.7f : 0f));
+        float sM = ((ver != 0 && hor != 0) ? 0.7f : ((ver == 0 && hor == 0) ? 0f : 1f));
         if (sM == 1f)
         {
             if (ver != 0)
@@ -70,6 +71,19 @@ public class HeroController : MonoBehaviour
             {
                 x = Mathf.Cos(rad) * speed * hor;
                 z = -Mathf.Sin(rad) * speed * hor;
+            }
+        }
+        else if(sM == 0.7f)
+        {
+            if(ver + hor != 0f)
+            {
+                x = (Mathf.Sin(rad) + Mathf.Cos(rad)) / 2 * speed * hor;
+                z = (Mathf.Cos(rad) - Mathf.Sin(rad)) / 2 * speed * ver;
+            }
+            else
+            {
+                x = -(Mathf.Sin(rad) - Mathf.Cos(rad)) / 2 * speed * hor;
+                z = (Mathf.Cos(rad) + Mathf.Sin(rad)) / 2 * speed * ver;
             }
         }
         rb.linearVelocity = new Vector3(x, rb.linearVelocity.y, z);
@@ -84,10 +98,9 @@ public class HeroController : MonoBehaviour
     // -- DRY functions -- //
     private float OppositeKeys(Key negative,Key positive)
     {
-        //bool nPress = Input.GetKeyDown(negative);
         bool nPress = Keyboard.current[negative].isPressed;
         bool pPress = Keyboard.current[positive].isPressed;
-        if(nPress && !pPress)
+        /*if(nPress && !pPress)
         {
             return -1f;
         }
@@ -99,6 +112,8 @@ public class HeroController : MonoBehaviour
         {
             return 1f;
         }
-        return 0f;
+        return 0f;*/
+        float direction = (pPress ? 1f : 0f) - (nPress ? 1f : 0f);
+        return direction;
     }
 }
