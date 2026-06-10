@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class StoredSelector : StoredSentence
 {
-    private List<string> phraseIds;
-    private readonly bool canEndDialog;
+    private List<string> phraseIds { get; }
+    private bool canEndDialog { get; }
 
     public StoredSelector(string id, List<string> phraseIds, bool canEndDialog) : base(id)
     {
@@ -22,10 +22,6 @@ public class StoredSelector : StoredSentence
         {
             phraseIds.Add(id);
         }
-    }
-    public List<string> GetPhraseIds()
-    {
-        return phraseIds;
     }
     public bool GetCanDialogEnd()
     {

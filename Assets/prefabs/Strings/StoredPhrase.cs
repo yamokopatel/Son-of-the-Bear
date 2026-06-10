@@ -3,95 +3,74 @@ using UnityEngine;
 
 public class StoredPhrase : StoredSentence
 {
-    private string answerId { get; }
-
+    private string selectorId { get; }
+    //для изменения селекторов
     private bool isChangingSelector { get; }
     private string[] selectorIds;
     private int[] actions;
     private string[] phraseIds;
-
+    //для изменения глобалов
     private bool isModifyingGlobal { get; }
     private string globalId;
     private int modifyingValue;
 
-    public StoredPhrase(string id, string answerId) : base(id)
+    public StoredPhrase(string id, string selectorId,
+        bool isChangingSelector = false, string[] selectorIds = null, int[] actions = null, string[] phraseIds = null,
+        bool isModifyingGlobal = false, string globalId = null, int modifyingValue = 0) : base(id)
     {
-        this.answerId = answerId;
-    }
-    public StoredPhrase(string id, string answerId, 
-        bool isChangingSelector, string[] selectorIds, int[] actions, string[] phraseIds) : base(id)
-    {
-        this.answerId = answerId;
-
+        this.selectorId = selectorId;
+        //селекторы
         this.isChangingSelector = isChangingSelector;
-        this.selectorIds = selectorIds;
-        this.actions = actions;
-        this.phraseIds = phraseIds;
-    }
-    public StoredPhrase(string id, string answerId, 
-        bool isModifyingGlobal, string globalId, int modifyingValue) : base(id)
-    {
-        this.answerId = answerId;
-
+        this.selectorIds = selectorIds ?? Array.Empty<string>();
+        this.actions = actions ?? Array.Empty<int>();
+        this.phraseIds = phraseIds ?? Array.Empty<string>();
+        //глобалы
         this.isModifyingGlobal = isModifyingGlobal;
-        this.globalId = globalId;
-        this.modifyingValue = modifyingValue;
-    }
-    public StoredPhrase(string id, string answerId,
-        bool isChangingSelector, string[] selectorIds, int[] actions, string[] phraseIds,
-        bool isModifyingGlobal, string globalId, int modifyingValue) : base(id)
-    {
-        this.answerId = answerId;
-
-        this.isChangingSelector = isChangingSelector;
-        this.selectorIds = selectorIds;
-        this.actions = actions;
-        this.phraseIds = phraseIds;
-
-        this.isModifyingGlobal = isModifyingGlobal;
-        this.globalId = globalId;
+        this.globalId = globalId ?? string.Empty;
         this.modifyingValue = modifyingValue;
     }
 
-    public string[] GetSelectorIds()
+    //методы для возвращения данных об изменении селекторов
+    //дженерик
+    private T[] GetSelectorData<T>(T[] data)
     {
         if (isChangingSelector)
         {
-            return selectorIds;
+            return data;
         }
-        return Array.Empty<string>();
+        return Array.Empty<T>();
     }
-    public int[] GetActions()
-    {
-        if (isChangingSelector)
-        {
-            return actions;
-        }
-        return Array.Empty<int>();
+    //методы
+    public string[] GetSelectorIds() 
+    { 
+        return GetSelectorData<string>(selectorIds);
+    }
+    public int[] GetActions() 
+    { 
+        return GetSelectorData<int>(actions);
     }
     public string[] GetPhraseIds()
     {
-        if (isChangingSelector)
-        {
-            return phraseIds;
-        }
-        return Array.Empty<string>();
+        return GetSelectorData<string>(phraseIds);
     }
 
-    public string GetGlobalId()
+    //методы для измеления глобалов
+    //дженерик
+    private T GetGlobalData<T>(T data)
     {
         if (isModifyingGlobal)
         {
-            return globalId;
+            return data;
         }
         return default;
     }
-    public int GetMofifyingValue()
+    //методы
+    public string GetGlobalId()
     {
-        if (isModifyingGlobal)
-        {
-            return modifyingValue;
-        }
-        return default;
+        return GetGlobalData<string>(globalId);
+    }
+    public int GetModifyingValue()
+    {
+        return GetGlobalData<int>(modifyingValue);
     }
 }
