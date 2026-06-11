@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StaticSettings", menuName = "Scriptable Objects/StaticSettings")]
@@ -67,5 +68,38 @@ public class StaticSettings : ScriptableObject
         {
             SaveSettings();
         }
+        //настройка разрешения
+        string[] res = screenResolution.Split("x");
+        int width = int.Parse(res[0]);
+        int height = int.Parse(res[1]);
+        //настройка режима
+        FullScreenMode mode = screenMode switch
+        {
+            "fullscreen" => FullScreenMode.ExclusiveFullScreen,
+            "fullscreen window" => FullScreenMode.FullScreenWindow,
+            "windowed" => FullScreenMode.Windowed,
+            _ => FullScreenMode.Windowed
+        };
+        Screen.SetResolution(width, height, mode);
+        //настройка фпс
+        if(frameRate != -1)
+        {
+            QualitySettings.vSyncCount = 0;
+        }
+        else
+        {
+            QualitySettings.vSyncCount = 1;
+        }
+        Application.targetFrameRate = frameRate;
     }
+
+    //Getters
+    public string GetLangCode() => langCode;
+    public int GetFontSize() => fontSize;
+    public bool GetHighlight() => highlight;
+    public float GetSoundVolume() => soundVolume;
+    public float GetMusicVolume() => musicVolume;
+    public float GetEnvironmentVolume() => environmentVolume;
+    public float GetMouseSensitivity() => mouseSensitivity;
+    public int GetControls() => controls;
 }
