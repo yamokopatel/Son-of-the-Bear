@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StoredPhrase : StoredSentence
 {
-    private string selectorId { get; }
+    private string selectorId;
     //для изменения селекторов
     private bool isChangingSelector { get; }
     private string[] selectorIds;
@@ -72,5 +72,19 @@ public class StoredPhrase : StoredSentence
     public int GetModifyingValue()
     {
         return GetGlobalData<int>(modifyingValue);
+    }
+
+    //базовые геттеры
+    public string GetSelectorId()
+    {
+        return selectorId;
+    }
+    public bool GetChangingSelector()
+    {
+        return isChangingSelector;
+    }
+    public bool GetModifyingGlobal()
+    {
+        return isModifyingGlobal;
     }
 }
