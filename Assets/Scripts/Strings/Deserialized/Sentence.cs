@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public abstract class Sentence
+public class Sentence
 {
-
+    private int fillerVariable;
+    public Sentence()
+    {
+        fillerVariable = 0;
+    }
 }
