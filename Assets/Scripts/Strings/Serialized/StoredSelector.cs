@@ -1,10 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class StoredSelector : StoredSentence
 {
-    private List<string> phraseIds;
-    private bool canEndDialog;
+    [SerializeField] private List<string> phraseIds;
+    [SerializeField] private bool canEndDialog;
 
     public StoredSelector(string id, List<string> phraseIds, bool canEndDialog) : base(id)
     {

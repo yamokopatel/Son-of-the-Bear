@@ -19,48 +19,24 @@ public class StaticDialogNodes : ScriptableObject
     }
     private void LoadNodesFromJson()
     {
-        if (!IsJsonNull(phraseJson))
+        DeserializeNodes<StoredPhrase>(phraseJson);
+        DeserializeNodes<StoredSelector>(selectorJson);
+    }
+    private void DeserializeNodes<T>(TextAsset jsonFile) where T : StoredSentence
+    {
+        if (!IsJsonNull(jsonFile))
         {
-            JsonShaverma<StoredPhrase> phraseShaverma = JsonUtility.FromJson<JsonShaverma<StoredPhrase>>("{\"items\":" + phraseJson.text + "}");
-            if (phraseShaverma != null && !phraseShaverma.IsShavermaEmpty())
+            JsonShaverma<T> sentenceShaverma = JsonUtility.FromJson<JsonShaverma<T>>("{\"items\":" + jsonFile.text + "}");
+            if (sentenceShaverma != null && !sentenceShaverma.IsShavermaEmpty())
             {
-                List<StoredPhrase> sPhrases = phraseShaverma.items;
-                foreach(StoredPhrase phrase in sPhrases)
+                List<T> sSentences = sentenceShaverma.items;
+                foreach(T sentence in sSentences)
                 {
-                    string id = phrase.GetId();
+                    string id = sentence.GetId();
                     if (sentenceNodes.ContainsKey(id) == false)
                     {
                         sentenceIds.Add(id);
-                        sentenceNodes.Add(id, phrase);
-                    }
-                    else
-                    {
-                        Debug.LogError($"Дубликат ID обнаружен в JSON: {id}! Фраза пропущена во избежание краша.");
-                    }
-                }
-            }
-            else
-            {
-                Debug.LogError("Не удалось распарсить JSON или список элементов пуст.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Файл фраз пуст или отсутствует!");
-        }
-        if (!IsJsonNull(selectorJson))
-        {
-            JsonShaverma<StoredSelector> selectorShaverma = JsonUtility.FromJson<JsonShaverma<StoredSelector>>("{\"items\":" + selectorJson.text + "}");
-            if(selectorShaverma != null && !selectorShaverma.IsShavermaEmpty())
-            {
-                List<StoredSelector> sSelectors = selectorShaverma.items;
-                foreach(StoredSelector selector in sSelectors)
-                {
-                    string id = selector.GetId();
-                    if (sentenceNodes.ContainsKey(id) == false)
-                    {
-                        sentenceIds.Add(id);
-                        sentenceNodes.Add(id, selector);
+                        sentenceNodes.Add(id, sentence);
                     }
                     else
                     {
