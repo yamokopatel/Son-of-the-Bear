@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StaticSettings", menuName = "Scriptable Objects/StaticSettings")]
 public class StaticSettings : ScriptableObject
 {
+    [SerializeField] private StaticLines staticLines;
+
     [Header ("Screen settings")]
     [SerializeField] private string screenMode = "fullscreen";
     [SerializeField] private string screenResolution = "1920x1080";
@@ -42,6 +44,8 @@ public class StaticSettings : ScriptableObject
         PlayerPrefs.SetInt("Setting_Controls", controls);
 
         PlayerPrefs.Save();
+
+        UseSettings();
     }
 
     public void LoadSettings()
@@ -68,10 +72,16 @@ public class StaticSettings : ScriptableObject
         {
             SaveSettings();
         }
+        UseSettings();
+    }
+    private void UseSettings()
+    {
         //настройка разрешения
         string[] res = screenResolution.Split("x");
         int width = int.Parse(res[0]);
         int height = int.Parse(res[1]);
+        //UI и UX
+        staticLines.LoadLocalLines(langCode);
         //настройка режима
         FullScreenMode mode = screenMode switch
         {
@@ -82,7 +92,7 @@ public class StaticSettings : ScriptableObject
         };
         Screen.SetResolution(width, height, mode);
         //настройка фпс
-        if(frameRate != -1)
+        if (frameRate != -1)
         {
             QualitySettings.vSyncCount = 0;
         }
