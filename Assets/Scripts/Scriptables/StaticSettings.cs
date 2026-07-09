@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StaticSettings", menuName = "Scriptable Objects/StaticSettings")]
 public class StaticSettings : ScriptableObject
 {
+    public static StaticSettings Instance { get; private set; }
     [SerializeField] private StaticLines staticLines;
 
     [Header ("Screen settings")]
@@ -25,6 +26,10 @@ public class StaticSettings : ScriptableObject
     [SerializeField] private float mouseSensitivity = 0.4f;
     [SerializeField] private int controls = 0; //0 = qwerty
 
+    private void OnEnable()
+    {
+        Instance = this;
+    }
     public void SaveSettings()
     {
         //Screen
@@ -104,6 +109,9 @@ public class StaticSettings : ScriptableObject
     }
 
     //Getters
+    public string GetScreenMode() => screenMode;
+    public string GetScreenResolution() => screenResolution;
+    public int GetFrameRate() => frameRate;
     public string GetLangCode() => langCode;
     public int GetFontSize() => fontSize;
     public bool GetHighlight() => highlight;
@@ -112,4 +120,18 @@ public class StaticSettings : ScriptableObject
     public float GetEnvironmentVolume() => environmentVolume;
     public float GetMouseSensitivity() => mouseSensitivity;
     public int GetControls() => controls;
+    public StaticLines GetStaticLines() => staticLines;
+
+    //Setters
+    public void SetScreenMode(string screenMode) => this.screenMode = screenMode;
+    public void SetScreenResolution(string screenResolution) => this.screenResolution = screenResolution;
+    public void SetFrameRate(int frameRate) => this.frameRate = frameRate;
+    public void SetLangCode(string langCode) => this.langCode = langCode;
+    public void SetFontSize(int fontSize) => this.fontSize = fontSize;
+    public void SetHighlight(bool highlight) => this.highlight = highlight;
+    public void SetSoundVolume(float soundVolume) => this.soundVolume = soundVolume;
+    public void SetMusicVolume(float musicVolume) => this.musicVolume = musicVolume;
+    public void SetEnvironmentVolume(float environmentVolume) => this.environmentVolume = environmentVolume;
+    public void SetMouseSensitivity(float mouseSensitivity) => this.mouseSensitivity = mouseSensitivity;
+    public void SetControls(int controls) => this.controls = controls;
 }
