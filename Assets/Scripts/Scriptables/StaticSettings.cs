@@ -4,7 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StaticSettings", menuName = "Scriptable Objects/StaticSettings")]
 public class StaticSettings : ScriptableObject
 {
-    public static StaticSettings Instance { get; private set; }
     [SerializeField] private StaticLines staticLines;
 
     [Header ("Screen settings")]
@@ -26,10 +25,6 @@ public class StaticSettings : ScriptableObject
     [SerializeField] private float mouseSensitivity = 0.4f;
     [SerializeField] private int controls = 0; //0 = qwerty
 
-    private void OnEnable()
-    {
-        Instance = this;
-    }
     public void SaveSettings()
     {
         //Screen
@@ -49,8 +44,6 @@ public class StaticSettings : ScriptableObject
         PlayerPrefs.SetInt("Setting_Controls", controls);
 
         PlayerPrefs.Save();
-
-        UseSettings();
     }
 
     public void LoadSettings()
@@ -77,7 +70,6 @@ public class StaticSettings : ScriptableObject
         {
             SaveSettings();
         }
-        UseSettings();
     }
     private void UseSettings()
     {
