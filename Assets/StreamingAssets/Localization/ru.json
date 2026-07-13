@@ -1,9 +1,138 @@
 [
     {
-        "id": "",
-        "line": ""
+        "id": "main_btn_newgame",
+        "line": "Новая игра"
     },
     {
-
+        "id": "main_btn_loadgame",
+        "line": "Загрузить игру"
+    },
+    {
+        "id": "main_btn_settings",
+        "line": "Настройки"
+    },
+    {
+        "id": "main_btn_quitgame",
+        "line": "Выйти из игры"
+    },
+    {
+        "id": "sttngs_main_btn_save",
+        "line": "Сохранить"
+    },
+    {
+        "id": "sttngs_main_btn_close",
+        "line": "Закрыть"
+    },
+    {
+        "id": "sttngs_main_btn_screen",
+        "line": "Экран"
+    },
+    {
+        "id": "sttngs_main_btn_audio",
+        "line": "Аудио"
+    },
+    {
+        "id": "sttngs_main_btn_ui",
+        "line": "Интерфейс"
+    },
+    {
+        "id": "sttngs_main_btn_controls",
+        "line": "Управление"
+    },
+    {
+        "id": "sttngs_main_btn_credits",
+        "line": "Авторы"
+    },
+    {
+        "id": "sttngs_screen_ttl_mode",
+        "line": "Режим экрана"
+    },
+    {
+        "id": "sttngs_screen_ttl_resolution",
+        "line": "Разрешение экрана"
+    },
+    {
+        "id": "sttngs_screen_ttl_framerate",
+        "line": "Частота кадров"
+    },
+    {
+        "id": "sttngs_screen_mode_dd_fs",
+        "line": "Полный экран"
+    },
+    {
+        "id": "sttngs_screen_mode_dd_wfs",
+        "line": "Полный экран (окно)"
+    },
+    {
+        "id": "sttngs_screen_mode_dd_w",
+        "line": "Оконный"
+    },
+    {
+        "id": "sttngs_audio_ttl_sound",
+        "line": "Звук"
+    },
+    {
+        "id": "sttngs_audio_ttl_music",
+        "line": "Музыка"
+    },
+    {
+        "id": "sttngs_audio_ttl_env",
+        "line": "Окружение"
+    },
+    {
+        "id": "sttngs_ui_ttl_lang",
+        "line": "Язык"
+    },
+    {
+        "id": "sttngs_ui_ttl_fsize",
+        "line": "Размер шрифта"
+    },
+    {
+        "id": "sttngs_ui_ttl_highlight",
+        "line": "Выделение"
+    },
+    {
+        "id": "sttngs_ui_desc_highlight",
+        "line": "Выделение персонажей"
+    },
+    {
+        "id": "sttngs_controls_ttl_controls",
+        "line": "Раскладка"
+    },
+    {
+        "id": "sttngs_controls_ttl_mouse",
+        "line": "Чувствительность мыши"
+    },
+    {
+        "id": "sttngs_controls_desc_forward",
+        "line": "Вперёд"
+    },
+    {
+        "id": "sttngs_controls_desc_right",
+        "line": "Вправо"
+    },
+    {
+        "id": "sttngs_controls_desc_backward",
+        "line": "Назад"
+    },
+    {
+        "id": "sttngs_controls_desc_left",
+        "line": "Влево"
+    },
+    {
+        "id": "sttngs_controls_desc_pause",
+        "line": "Пауза"
+    },
+    {
+        "id": "sttngs_controls_desc_clockrot",
+        "line": "Поворот камеры по часовой"
+    },
+    {
+        "id": "sttngs_controls_desc_unclockrot",
+        "line": "Поворот камеры против часовой"
+    },
+    {
+        "id": "sttngs_controls_desc_interact",
+        "line": "Взаимодействие"
     }
 ]

@@ -60,17 +60,48 @@ public class SettingsMenuController : MonoBehaviour
     private GameObject currentSettingPanel;
     void Start()
     {
-        PreloadLines();
-        PreloadValues();
+        LoadLines();
+        LoadValues();
         soundSettingPanel.SetActive(true);
         currentSettingPanel = soundSettingPanel;
     }
     //preload data and lines
-    private void PreloadLines()
+    private void LoadLines()
     {
-
+        //TITLES
+        //screen
+        screenMode_title.text = localization.GetLine("sttngs_screen_ttl_mode");
+        screenResolution_title.text = localization.GetLine("sttngs_screen_ttl_resolution");
+        frameRate_title.text = localization.GetLine("sttngs_screen_ttl_framerate");
+        //sound
+        soundVolume_title.text = localization.GetLine("sttngs_audio_ttl_sound");
+        musicVolume_title.text = localization.GetLine("sttngs_audio_ttl_music");
+        envVolume_title.text = localization.GetLine("sttngs_audio_ttl_env");
+        //ui
+        language_title.text = localization.GetLine("sttngs_ui_ttl_lang");
+        fontSize_title.text = localization.GetLine("sttngs_ui_ttl_fsize");
+        highlight_title.text = localization.GetLine("sttngs_ui_ttl_highlight");
+        //controls
+        controls_title.text = localization.GetLine("sttngs_controls_ttl_controls");
+        mouseSense_title.text = localization.GetLine("sttngs_controls_ttl_mouse");
+        //VALUES
+        //screen
+        screenMode_picker.options[0].text = localization.GetLine("sttngs_screen_mode_dd_fs");
+        screenMode_picker.options[1].text = localization.GetLine("sttngs_screen_mode_dd_wfs");
+        screenMode_picker.options[2].text = localization.GetLine("sttngs_screen_mode_dd_w");
+        //ui
+        highlight_toggle.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_ui_desc_highlight");
+        //controls
+        forward_desc.text = localization.GetLine("sttngs_controls_desc_forward");
+        right_desc.text = localization.GetLine("sttngs_controls_desc_right");
+        backward_desc.text = localization.GetLine("sttngs_controls_desc_backward");
+        left_desc.text = localization.GetLine("sttngs_controls_desc_left");
+        pause_desc.text = localization.GetLine("sttngs_controls_desc_pause");
+        interact_desc.text = localization.GetLine("sttngs_controls_desc_interact");
+        rotClock_desc.text = localization.GetLine("sttngs_controls_desc_clockrot");
+        rotUnclock_desc.text = localization.GetLine("sttngs_controls_desc_unclockrot");
     }
-    private void PreloadValues()
+    private void LoadValues()
     {
 
     }
@@ -92,5 +123,10 @@ public class SettingsMenuController : MonoBehaviour
 
     }
     //servise onUpdate functions
-
+    public void SwitchSettingPanel(GameObject newSettingPanel)
+    {
+        currentSettingPanel.SetActive(false);
+        newSettingPanel.SetActive(true);
+        currentSettingPanel = newSettingPanel;
+    }
 }

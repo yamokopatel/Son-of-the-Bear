@@ -1,0 +1,138 @@
+[
+    {
+        "id": "main_btn_newgame",
+        "line": "New game"
+    },
+    {
+        "id": "main_btn_loadgame",
+        "line": "Load Game"
+    },
+    {
+        "id": "main_btn_settings",
+        "line": "Settings"
+    },
+    {
+        "id": "main_btn_quitgame",
+        "line": "Quit game"
+    },
+    {
+        "id": "sttngs_main_btn_save",
+        "line": "Save"
+    },
+    {
+        "id": "sttngs_main_btn_close",
+        "line": "Close"
+    },
+    {
+        "id": "sttngs_main_btn_screen",
+        "line": "Screen"
+    },
+    {
+        "id": "sttngs_main_btn_audio",
+        "line": "Audio"
+    },
+    {
+        "id": "sttngs_main_btn_ui",
+        "line": "Interface"
+    },
+    {
+        "id": "sttngs_main_btn_controls",
+        "line": "Controls"
+    },
+    {
+        "id": "sttngs_main_btn_credits",
+        "line": "Credits"
+    },
+    {
+        "id": "sttngs_screen_ttl_mode",
+        "line": "Screen mode"
+    },
+    {
+        "id": "sttngs_screen_ttl_resolution",
+        "line": "Screen resolution"
+    },
+    {
+        "id": "sttngs_screen_ttl_framerate",
+        "line": "Framerate"
+    },
+    {
+        "id": "sttngs_screen_mode_dd_fs",
+        "line": "Fullscreen"
+    },
+    {
+        "id": "sttngs_screen_mode_dd_wfs",
+        "line": "Fullscreen window"
+    },
+    {
+        "id": "sttngs_screen_mode_dd_w",
+        "line": "Windowed"
+    },
+    {
+        "id": "sttngs_audio_ttl_sound",
+        "line": "Sound"
+    },
+    {
+        "id": "sttngs_audio_ttl_music",
+        "line": "Music"
+    },
+    {
+        "id": "sttngs_audio_ttl_env",
+        "line": "Environment"
+    },
+    {
+        "id": "sttngs_ui_ttl_lang",
+        "line": "Language"
+    },
+    {
+        "id": "sttngs_ui_ttl_fsize",
+        "line": "Font size"
+    },
+    {
+        "id": "sttngs_ui_ttl_highlight",
+        "line": "Highlight"
+    },
+    {
+        "id": "sttngs_ui_desc_highlight",
+        "line": "NPC highlight"
+    },
+    {
+        "id": "sttngs_controls_ttl_controls",
+        "line": "Controls"
+    },
+    {
+        "id": "sttngs_controls_ttl_mouse",
+        "line": "Mouse sensitivity"
+    },
+    {
+        "id": "sttngs_controls_desc_forward",
+        "line": "Forward"
+    },
+    {
+        "id": "sttngs_controls_desc_right",
+        "line": "Right"
+    },
+    {
+        "id": "sttngs_controls_desc_backward",
+        "line": "Backward"
+    },
+    {
+        "id": "sttngs_controls_desc_left",
+        "line": "Left"
+    },
+    {
+        "id": "sttngs_controls_desc_pause",
+        "line": "Pause"
+    },
+    {
+        "id": "sttngs_controls_desc_clockrot",
+        "line": "Rotate camera clock direction"
+    },
+    {
+        "id": "sttngs_controls_desc_unclockrot",
+        "line": "Rotate camera against clock direction"
+    },
+    {
+        "id": "sttngs_controls_desc_interact",
+        "line": "Interact"
+    }
+]

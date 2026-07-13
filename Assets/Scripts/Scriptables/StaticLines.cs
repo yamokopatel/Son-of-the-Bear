@@ -10,6 +10,14 @@ public class StaticLines : ScriptableObject
 
     public Dictionary<string, string> lineMap = new Dictionary<string, string>();
 
+    public string GetLine(string lineId)
+    {
+       if(lineMap.TryGetValue(lineId, out string line))
+        {
+            return line;
+        }
+        return lineId;
+    }
     public void LoadLocalLines(string langCode)
     {
         localLines.Clear();
