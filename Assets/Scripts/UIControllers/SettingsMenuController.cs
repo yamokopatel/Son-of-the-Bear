@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class SettingsMenuController : MonoBehaviour
     [Header("Static Containers")]
     [SerializeField] private StaticSettings gameSettings;
     [SerializeField] private StaticLines localization;
+    [SerializeField] private LangDictionary langDictionary;
 
     [Header("SETTING FIELDS")]
     [Header("Screen Setting Fields")]
@@ -89,6 +91,7 @@ public class SettingsMenuController : MonoBehaviour
         screenMode_picker.options[0].text = localization.GetLine("sttngs_screen_mode_dd_fs");
         screenMode_picker.options[1].text = localization.GetLine("sttngs_screen_mode_dd_wfs");
         screenMode_picker.options[2].text = localization.GetLine("sttngs_screen_mode_dd_w");
+        screenMode_picker.RefreshShownValue();
         //ui
         highlight_toggle.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_ui_desc_highlight");
         //controls
@@ -103,18 +106,15 @@ public class SettingsMenuController : MonoBehaviour
     }
     private void LoadValues()
     {
-
+        LoadScreenMode(); LoadScreenResolution(); LoadFramerate();
+        LoadVolume(soundVolume_slider, gameSettings.GetSoundVolume(), soundVolume_percent); 
+        LoadVolume(musicVolume_slider, gameSettings.GetMusicVolume(), musicVolume_percent);
+        LoadVolume(envVolume_slider, gameSettings.GetEnvironmentVolume(), envVolume_percent);
+        LoadLanguage(); LoadFontSize(); LoadHighlight();
+        LoadMouseSensitivity(); LoadControls();
     }
     //closing buttons functions
-    public void SaveAndClose()
-    {
-
-    }
-    public void Close()
-    {
-
-    }
-    private void ReloadValues()
+    public void Close(bool save)
     {
 
     }
@@ -128,5 +128,110 @@ public class SettingsMenuController : MonoBehaviour
         currentSettingPanel.SetActive(false);
         newSettingPanel.SetActive(true);
         currentSettingPanel = newSettingPanel;
+    }
+    //value loading funstions
+    private void LoadScreenMode()
+    {
+        screenMode_picker.value = gameSettings.GetScreenMode() switch
+        {
+            "fullscreen" => 0,
+            "fullscreen window" => 1,
+            "windowed" => 2,
+            _ => 2
+        };
+    }
+    private void LoadScreenResolution()
+    {
+        bool foundResolution = false;
+        for (int a = 0; a < screenResolution_picker.options.Count; a++)
+        {
+            if (screenResolution_picker.options[a].text == gameSettings.GetScreenResolution())
+            {
+                screenResolution_picker.value = a;
+                foundResolution = true;
+                break;
+            }
+        }
+        if (!foundResolution)
+        {
+            screenResolution_picker.AddOptions(new List<string> { gameSettings.GetScreenResolution() });
+            screenResolution_picker.value = (screenResolution_picker.options.Count - 1);
+        }
+        screenResolution_picker.RefreshShownValue();
+    }
+    private void LoadFramerate()
+    {
+        bool foundFramerate = false;
+        if(gameSettings.GetFrameRate() == -1)
+        {
+            frameRate_picker.value = 0;
+            foundFramerate = true;
+        }
+        else
+        {
+            for(int a = 1; a < frameRate_picker.options.Count; a++)
+            {
+                if (frameRate_picker.options[a].text.Equals(gameSettings.GetFrameRate().ToString()))
+                {
+                    frameRate_picker.value = a;
+                    foundFramerate = true;
+                    break;
+                }
+            }
+        }
+        if (!foundFramerate)
+        {
+            frameRate_picker.AddOptions(new List<string> { gameSettings.GetFrameRate().ToString() });
+            frameRate_picker.value = (frameRate_picker.options.Count - 1);
+        }
+        frameRate_picker.RefreshShownValue();
+    }
+    private void LoadVolume(Slider volumeSlider, float savedVolume, Text volumePercent)
+    {
+        int inSliderValue = (int) (savedVolume * 100);
+        volumeSlider.value = inSliderValue;
+        volumePercent.text = inSliderValue.ToString();
+    }
+    private void LoadLanguage()
+    {
+        for(int a = 0; a < language_picker.options.Count; a++)
+        {
+            if (language_picker.options[a].text == langDictionary.GetLangByCode(gameSettings.GetLangCode()))
+            {
+                language_picker.value = a;
+                break;
+            }
+        }
+        language_picker.RefreshShownValue();
+    }
+    private void LoadFontSize()
+    {
+        int fontSize = gameSettings.GetFontSize();
+        fontSize_slider.value = fontSize;
+        fontSize_pixels.text = fontSize.ToString();
+    }
+    private void LoadHighlight()
+    {
+        highlight_toggle.SetIsOnWithoutNotify(gameSettings.GetHighlight());
+    }
+    private void LoadMouseSensitivity()
+    {
+        float sensitivity = gameSettings.GetMouseSensitivity();
+        mouseSense_slider.value = sensitivity;
+        mouseSense.text = sensitivity.ToString();
+    }
+    private void LoadControls()
+    {
+        switch (gameSettings.GetControls())
+        {
+            case 1:
+                forward_btn.text = "W"; right_btn.text = "D"; backward_btn.text = "S"; left_btn.text = "A";
+                pause_btn.text = "Esc"; rotClock_btn.text = "E"; rotUnclock_btn.text = "Q"; interact_btn.text = "F";
+                break;
+            case 2:
+                forward_btn.text = "Z"; right_btn.text = "D"; backward_btn.text = "S"; left_btn.text = "Q";
+                pause_btn.text = "Esc"; rotClock_btn.text = "E"; rotUnclock_btn.text = "A"; interact_btn.text = "F";
+                break;
+        }
     }
 }
