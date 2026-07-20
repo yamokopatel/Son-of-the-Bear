@@ -120,7 +120,9 @@ public class SettingsMenuController : MonoBehaviour
     }
     private void InloadValues()
     {
-
+        InloadScreenMode(); InloadScreenResolution(); InloadFrameRate();
+        InloadVolumes();
+        InloadLanguage(); InloadFontSize(); InloadHighlight();
     }
     //servise onUpdate functions
     public void SwitchSettingPanel(GameObject newSettingPanel)
@@ -129,7 +131,21 @@ public class SettingsMenuController : MonoBehaviour
         newSettingPanel.SetActive(true);
         currentSettingPanel = newSettingPanel;
     }
-    //value loading funstions
+    public void ShowControlsButtons(int controls)
+    {
+        switch (controls)
+        {
+            case 1:
+                forward_btn.text = "W"; right_btn.text = "D"; backward_btn.text = "S"; left_btn.text = "A";
+                pause_btn.text = "Esc"; rotClock_btn.text = "E"; rotUnclock_btn.text = "Q"; interact_btn.text = "F";
+                break;
+            case 2:
+                forward_btn.text = "Z"; right_btn.text = "D"; backward_btn.text = "S"; left_btn.text = "Q";
+                pause_btn.text = "Esc"; rotClock_btn.text = "E"; rotUnclock_btn.text = "A"; interact_btn.text = "F";
+                break;
+        }
+    }
+    //value loading functions
     private void LoadScreenMode()
     {
         screenMode_picker.value = gameSettings.GetScreenMode() switch
@@ -139,6 +155,7 @@ public class SettingsMenuController : MonoBehaviour
             "windowed" => 2,
             _ => 2
         };
+        screenMode_picker.RefreshShownValue();
     }
     private void LoadScreenResolution()
     {
@@ -212,7 +229,7 @@ public class SettingsMenuController : MonoBehaviour
     }
     private void LoadHighlight()
     {
-        highlight_toggle.SetIsOnWithoutNotify(gameSettings.GetHighlight());
+        highlight_toggle.isOn = gameSettings.GetHighlight();
     }
     private void LoadMouseSensitivity()
     {
@@ -222,16 +239,62 @@ public class SettingsMenuController : MonoBehaviour
     }
     private void LoadControls()
     {
-        switch (gameSettings.GetControls())
+        int controls = gameSettings.GetControls();
+        controls_picker.value = controls;
+        ShowControlsButtons(controls);
+
+    }
+    //value inloading functions
+    private void InloadScreenMode()
+    {
+        gameSettings.SetScreenMode(screenMode_picker.value switch
         {
-            case 1:
-                forward_btn.text = "W"; right_btn.text = "D"; backward_btn.text = "S"; left_btn.text = "A";
-                pause_btn.text = "Esc"; rotClock_btn.text = "E"; rotUnclock_btn.text = "Q"; interact_btn.text = "F";
-                break;
-            case 2:
-                forward_btn.text = "Z"; right_btn.text = "D"; backward_btn.text = "S"; left_btn.text = "Q";
-                pause_btn.text = "Esc"; rotClock_btn.text = "E"; rotUnclock_btn.text = "A"; interact_btn.text = "F";
-                break;
+            0 => "fullscreen",
+            1 => "fullscreen window",
+            2 => "windowed",
+            _ => "windowed"
+        });
+    }
+    private void InloadScreenResolution()
+    {
+        gameSettings.SetScreenResolution(screenResolution_picker.options[screenResolution_picker.value].text);
+    }
+    private void InloadFrameRate()
+    {
+        if (frameRate_picker.value != 0)
+        {
+            gameSettings.SetFrameRate(int.Parse(frameRate_picker.options[frameRate_picker.value].text));
         }
+        else
+        {
+            gameSettings.SetFrameRate(-1);
+        }
+    }
+    private void InloadVolumes()
+    {
+        gameSettings.SetSoundVolume(((float)soundVolume_slider.value) / 100);
+        gameSettings.SetMusicVolume(((float)musicVolume_slider.value) / 100);
+        gameSettings.SetEnvironmentVolume(((float)envVolume_slider.value) / 100);
+    }
+    private void InloadLanguage()
+    {
+        gameSettings.SetLangCode(langDictionary.GetCodeByLang(language_picker.options[language_picker.value].text));
+    }
+    private void InloadFontSize()
+    {
+        gameSettings.SetFontSize((int)fontSize_slider.value);
+    }
+    private void InloadHighlight()
+    {
+        gameSettings.SetHighlight(highlight_toggle.isOn);
+    }
+    private void InloadMouseSensitivity()
+    {
+        float sense = (Mathf.Round(mouseSense_slider.value * 100) / 100);
+        gameSettings.SetMouseSensitivity(sense);
+    }
+    private void InloadControls()
+    {
+        gameSettings.SetControls(controls_picker.value);
     }
 }
