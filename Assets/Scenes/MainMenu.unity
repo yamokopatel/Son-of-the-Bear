@@ -130,13 +130,14 @@ GameObject:
   - component: {fileID: 3432302}
   - component: {fileID: 3432304}
   - component: {fileID: 3432303}
+  - component: {fileID: 3432305}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3432302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -198,6 +199,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3432301}
   m_CullTransparentMesh: 1
+--- !u!114 &3432305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63d598f58361e942b1300b57611a31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsMenuController
+  gameSettings: {fileID: 11400000, guid: df58c8a873ad1bb4db0d37ba7721ca69, type: 2}
+  localization: {fileID: 11400000, guid: 9bc044d497818074986bf9d81ee5e7ae, type: 2}
+  langDictionary: {fileID: 11400000, guid: 69032f74a486fc048b5772753d00531c, type: 2}
+  screenMode_title: {fileID: 818789266}
+  screenResolution_title: {fileID: 191490990}
+  frameRate_title: {fileID: 1272646142}
+  screenMode_picker: {fileID: 882134175}
+  screenResolution_picker: {fileID: 924026162}
+  frameRate_picker: {fileID: 1901343805}
+  soundVolume_title: {fileID: 912015530}
+  musicVolume_title: {fileID: 728552337}
+  envVolume_title: {fileID: 426315162}
+  soundVolume_slider: {fileID: 230792259}
+  musicVolume_slider: {fileID: 1075713711}
+  envVolume_slider: {fileID: 961917844}
+  soundVolume_percent: {fileID: 264702816}
+  musicVolume_percent: {fileID: 902131542}
+  envVolume_percent: {fileID: 673097833}
+  language_title: {fileID: 363877284}
+  fontSize_title: {fileID: 1907201325}
+  highlight_title: {fileID: 852095868}
+  language_picker: {fileID: 326405097}
+  fontSize_slider: {fileID: 986299832}
+  highlight_toggle: {fileID: 2113502616}
+  fontSize_pixels: {fileID: 1430649288}
+  controls_title: {fileID: 1318917859}
+  mouseSense_title: {fileID: 1910258533}
+  controls_picker: {fileID: 2113482275}
+  mouseSense_slider: {fileID: 1085948053}
+  forward_btn: {fileID: 1724540334}
+  right_btn: {fileID: 162442951}
+  backward_btn: {fileID: 1278169128}
+  left_btn: {fileID: 2019731048}
+  pause_btn: {fileID: 984189325}
+  interact_btn: {fileID: 330412163}
+  rotClock_btn: {fileID: 1440245408}
+  rotUnclock_btn: {fileID: 143849754}
+  forward_desc: {fileID: 1355985394}
+  right_desc: {fileID: 1678927289}
+  backward_desc: {fileID: 985428781}
+  left_desc: {fileID: 1847120303}
+  pause_desc: {fileID: 636284441}
+  interact_desc: {fileID: 1218535549}
+  rotClock_desc: {fileID: 1265889995}
+  rotUnclock_desc: {fileID: 1802725110}
+  mouseSense: {fileID: 889264190}
+  screenSettingPanel: {fileID: 627093042}
+  soundSettingPanel: {fileID: 750859357}
+  uiSettingPanel: {fileID: 338952211}
+  controlsSettingPanel: {fileID: 473645499}
+  screenSettingButton: {fileID: 982582989}
+  soundSettingButton: {fileID: 492376952}
+  uiSettingButton: {fileID: 1370176328}
+  controlsButton: {fileID: 307853411}
+  creditsButton: {fileID: 1638559938}
+  closeButton: {fileID: 1318716517}
+  saveButton: {fileID: 1211782090}
+  mainSettingPanel: {fileID: 3432301}
 --- !u!1 &7400479
 GameObject:
   m_ObjectHideFlags: 0
