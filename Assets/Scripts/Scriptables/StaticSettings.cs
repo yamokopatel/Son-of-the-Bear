@@ -71,7 +71,7 @@ public class StaticSettings : ScriptableObject
             SaveSettings();
         }
     }
-    private void UseSettings()
+    public void UseSettings()
     {
         //настройка разрешения
         string[] res = screenResolution.Split("x");

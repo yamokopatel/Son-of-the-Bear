@@ -116,13 +116,25 @@ public class SettingsMenuController : MonoBehaviour
     //closing buttons functions
     public void Close(bool save)
     {
-
+        mainSettingPanel.SetActive(false);
+        soundSettingPanel.SetActive(true);
+        currentSettingPanel = soundSettingPanel;
+        if (save)
+        {
+            InloadValues();
+            gameSettings.SaveSettings(); gameSettings.UseSettings();
+        }
+        else
+        {
+            LoadValues();
+        }
     }
     private void InloadValues()
     {
         InloadScreenMode(); InloadScreenResolution(); InloadFrameRate();
         InloadVolumes();
         InloadLanguage(); InloadFontSize(); InloadHighlight();
+        InloadControls(); InloadMouseSensitivity();
     }
     //servise onUpdate functions
     public void SwitchSettingPanel(GameObject newSettingPanel)
@@ -131,9 +143,9 @@ public class SettingsMenuController : MonoBehaviour
         newSettingPanel.SetActive(true);
         currentSettingPanel = newSettingPanel;
     }
-    public void ShowControlsButtons(int controls)
+    public void ShowControlsButtons()
     {
-        switch (controls)
+        switch (controls_picker.value)
         {
             case 1:
                 forward_btn.text = "W"; right_btn.text = "D"; backward_btn.text = "S"; left_btn.text = "A";
@@ -143,6 +155,17 @@ public class SettingsMenuController : MonoBehaviour
                 forward_btn.text = "Z"; right_btn.text = "D"; backward_btn.text = "S"; left_btn.text = "Q";
                 pause_btn.text = "Esc"; rotClock_btn.text = "E"; rotUnclock_btn.text = "A"; interact_btn.text = "F";
                 break;
+        }
+    }
+    public void UpdateSliderOutput(Text output, Slider slider, float f)
+    {
+        if((int)f == f)
+        {
+            output.text = Mathf.RoundToInt(slider.value).ToString();
+        }
+        else
+        {
+            output.text = (Mathf.Round(slider.value * 100f) / 100f).ToString("0.##");
         }
     }
     //value loading functions
@@ -241,7 +264,7 @@ public class SettingsMenuController : MonoBehaviour
     {
         int controls = gameSettings.GetControls();
         controls_picker.value = controls;
-        ShowControlsButtons(controls);
+        ShowControlsButtons();
 
     }
     //value inloading functions
