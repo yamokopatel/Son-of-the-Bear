@@ -62,10 +62,17 @@ public class SettingsMenuController : MonoBehaviour
     private GameObject currentSettingPanel;
     void Start()
     {
+        //localization.LoadLocalLines("en"); //временный метод для проверки перевода
         LoadLines();
         LoadValues();
         soundSettingPanel.SetActive(true);
         currentSettingPanel = soundSettingPanel;
+        //event listeners, инспектор, какого-то хрена не видит функции
+        soundVolume_slider.onValueChanged.AddListener((val) => UpdateSliderOutput(soundVolume_percent, soundVolume_slider, true));
+        musicVolume_slider.onValueChanged.AddListener((val) => UpdateSliderOutput(musicVolume_percent, musicVolume_slider, true));
+        envVolume_slider.onValueChanged.AddListener((val) => UpdateSliderOutput(envVolume_percent, envVolume_slider, true));
+        fontSize_slider.onValueChanged.AddListener((val) => UpdateSliderOutput(fontSize_pixels, fontSize_slider, true));
+        mouseSense_slider.onValueChanged.AddListener((val) => UpdateSliderOutput(mouseSense, mouseSense_slider, false));
     }
     //preload data and lines
     private void LoadLines()
@@ -157,9 +164,9 @@ public class SettingsMenuController : MonoBehaviour
                 break;
         }
     }
-    public void UpdateSliderOutput(Text output, Slider slider, float f)
+    public void UpdateSliderOutput(Text output, Slider slider, bool isInt)
     {
-        if((int)f == f)
+        if(isInt)
         {
             output.text = Mathf.RoundToInt(slider.value).ToString();
         }

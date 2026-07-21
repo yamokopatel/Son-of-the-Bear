@@ -20,6 +20,7 @@ public class StaticLines : ScriptableObject
     }
     public void LoadLocalLines(string langCode)
     {
+        Debug.Log("Метод LoadLocalLines вызван!");
         localLines.Clear();
         lineMap.Clear();
 
