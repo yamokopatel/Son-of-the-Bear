@@ -1,9 +1,10 @@
 using UnityEngine;
 
+[System.Serializable]
 public class StoredLocal
 {
-    private string id;
-    private string line;
+    [SerializeField] private string id;
+    [SerializeField] private string line;
 
     public StoredLocal(string id, string line)
     {

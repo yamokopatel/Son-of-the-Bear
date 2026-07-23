@@ -264,7 +264,7 @@ MonoBehaviour:
   screenSettingButton: {fileID: 982582989}
   soundSettingButton: {fileID: 492376952}
   uiSettingButton: {fileID: 1370176328}
-  controlsButton: {fileID: 307853411}
+  controlsSettingButton: {fileID: 307853411}
   creditsButton: {fileID: 1638559938}
   closeButton: {fileID: 1318716517}
   saveButton: {fileID: 1211782090}
@@ -7198,10 +7198,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -12456,10 +12456,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0

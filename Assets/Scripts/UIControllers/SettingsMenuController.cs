@@ -52,7 +52,7 @@ public class SettingsMenuController : MonoBehaviour
     [Header("Setting Panels")]
     [SerializeField] private GameObject screenSettingPanel, soundSettingPanel, uiSettingPanel, controlsSettingPanel;
     [Header("Setting Choose Buttons")]
-    [SerializeField] private Button screenSettingButton, soundSettingButton, uiSettingButton, controlsButton, creditsButton;
+    [SerializeField] private Button screenSettingButton, soundSettingButton, uiSettingButton, controlsSettingButton, creditsButton;
 
     [Header("SETTING CLOSERS")]
     [SerializeField] private Button closeButton, saveButton;
@@ -62,7 +62,7 @@ public class SettingsMenuController : MonoBehaviour
     private GameObject currentSettingPanel;
     void Start()
     {
-        //localization.LoadLocalLines("en"); //временный метод для проверки перевода
+        localization.LoadLocalLines("en"); //временный метод для проверки перевода
         LoadLines();
         LoadValues();
         soundSettingPanel.SetActive(true);
@@ -110,6 +110,16 @@ public class SettingsMenuController : MonoBehaviour
         interact_desc.text = localization.GetLine("sttngs_controls_desc_interact");
         rotClock_desc.text = localization.GetLine("sttngs_controls_desc_clockrot");
         rotUnclock_desc.text = localization.GetLine("sttngs_controls_desc_unclockrot");
+        //BUTTONS
+        //panel switch
+        screenSettingButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_screen");
+        soundSettingButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_audio");
+        uiSettingButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_ui");
+        controlsSettingButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_controls");
+        creditsButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_credits");
+        //closing
+        closeButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_close");
+        saveButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_save");
     }
     private void LoadValues()
     {
