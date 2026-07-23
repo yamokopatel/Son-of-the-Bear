@@ -9,6 +9,10 @@ public class SettingsMenuController : MonoBehaviour
     [SerializeField] private StaticLines localization;
     [SerializeField] private LangDictionary langDictionary;
 
+    [Header("Other panels")]
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject gameLoadMenu;
+
     [Header("SETTING FIELDS")]
     [Header("Screen Setting Fields")]
     //titles
@@ -62,7 +66,7 @@ public class SettingsMenuController : MonoBehaviour
     private GameObject currentSettingPanel;
     void Start()
     {
-        localization.LoadLocalLines("en"); //временный метод для проверки перевода
+        langDictionary.Initialize();
         LoadLines();
         LoadValues();
         soundSettingPanel.SetActive(true);
@@ -121,6 +125,12 @@ public class SettingsMenuController : MonoBehaviour
         closeButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_close");
         saveButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_save");
     }
+    private void ReloadLines()
+    {
+        LoadLines();
+        mainMenu.GetComponent<MainMenuController>().LoadLines();
+        //reloading for save loading menu
+    }
     private void LoadValues()
     {
         LoadScreenMode(); LoadScreenResolution(); LoadFramerate();
@@ -140,6 +150,7 @@ public class SettingsMenuController : MonoBehaviour
         {
             InloadValues();
             gameSettings.SaveSettings(); gameSettings.UseSettings();
+            ReloadLines();
         }
         else
         {
