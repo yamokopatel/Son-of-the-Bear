@@ -39,10 +39,8 @@ public class MainMenuController : MonoBehaviour
     //starter function
     public void LoadLines()
     {
-        newGameButton.GetComponentInChildren<Text>().text = localization.GetLine("main_btn_newgame");
-        loadGameButton.GetComponentInChildren<Text>().text = localization.GetLine("main_btn_loadgame");
-        settingsButton.GetComponentInChildren<Text>().text = localization.GetLine("main_btn_settings");
-        quitButton.GetComponentInChildren<Text>().text = localization.GetLine("main_btn_quitgame");
+        LoadLine(newGameButton, "main_btn_newgame"); LoadLine(loadGameButton, "main_btn_loadgame");
+        LoadLine(settingsButton, "main_btn_settings"); LoadLine(quitButton, "main_btn_quitgame");
     }
     //every tick functions
     private void RotateTitle(float speed)
@@ -89,4 +87,9 @@ public class MainMenuController : MonoBehaviour
     {
 
     }*/
+    //DRY function
+    private void LoadLine(Button textField, string localId)
+    {
+        textField.GetComponentInChildren<Text>().text = localization.GetLine(localId);
+    }
 }

@@ -82,49 +82,29 @@ public class SettingsMenuController : MonoBehaviour
     //preload data and lines
     private void LoadLines()
     {
-        //TITLES
-        //screen
-        screenMode_title.text = localization.GetLine("sttngs_screen_ttl_mode");
-        screenResolution_title.text = localization.GetLine("sttngs_screen_ttl_resolution");
-        frameRate_title.text = localization.GetLine("sttngs_screen_ttl_framerate");
-        //sound
-        soundVolume_title.text = localization.GetLine("sttngs_audio_ttl_sound");
-        musicVolume_title.text = localization.GetLine("sttngs_audio_ttl_music");
-        envVolume_title.text = localization.GetLine("sttngs_audio_ttl_env");
-        //ui
-        language_title.text = localization.GetLine("sttngs_ui_ttl_lang");
-        fontSize_title.text = localization.GetLine("sttngs_ui_ttl_fsize");
-        highlight_title.text = localization.GetLine("sttngs_ui_ttl_highlight");
-        //controls
-        controls_title.text = localization.GetLine("sttngs_controls_ttl_controls");
-        mouseSense_title.text = localization.GetLine("sttngs_controls_ttl_mouse");
-        //VALUES
-        //screen
-        screenMode_picker.options[0].text = localization.GetLine("sttngs_screen_mode_dd_fs");
-        screenMode_picker.options[1].text = localization.GetLine("sttngs_screen_mode_dd_wfs");
-        screenMode_picker.options[2].text = localization.GetLine("sttngs_screen_mode_dd_w");
-        screenMode_picker.RefreshShownValue();
-        //ui
-        highlight_toggle.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_ui_desc_highlight");
-        //controls
-        forward_desc.text = localization.GetLine("sttngs_controls_desc_forward");
-        right_desc.text = localization.GetLine("sttngs_controls_desc_right");
-        backward_desc.text = localization.GetLine("sttngs_controls_desc_backward");
-        left_desc.text = localization.GetLine("sttngs_controls_desc_left");
-        pause_desc.text = localization.GetLine("sttngs_controls_desc_pause");
-        interact_desc.text = localization.GetLine("sttngs_controls_desc_interact");
-        rotClock_desc.text = localization.GetLine("sttngs_controls_desc_clockrot");
-        rotUnclock_desc.text = localization.GetLine("sttngs_controls_desc_unclockrot");
-        //BUTTONS
-        //panel switch
-        screenSettingButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_screen");
-        soundSettingButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_audio");
-        uiSettingButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_ui");
-        controlsSettingButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_controls");
-        creditsButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_credits");
-        //closing
-        closeButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_close");
-        saveButton.GetComponentInChildren<Text>().text = localization.GetLine("sttngs_main_btn_save");
+        //TITLES                                                    //screen
+        LoadLine(screenMode_title, "sttngs_screen_ttl_mode"); LoadLine(screenResolution_title, "sttngs_screen_ttl_resolution");
+        LoadLine(frameRate_title, "sttngs_screen_ttl_framerate");   //sound
+        LoadLine(soundVolume_title, "sttngs_audio_ttl_sound"); LoadLine(musicVolume_title, "sttngs_audio_ttl_music");
+        LoadLine(envVolume_title, "sttngs_audio_ttl_env");          //ui
+        LoadLine(language_title, "sttngs_ui_ttl_lang"); LoadLine(fontSize_title, "sttngs_ui_ttl_fsize");
+        LoadLine(highlight_title, "sttngs_ui_ttl_highlight");       //controls
+        LoadLine(controls_title, "sttngs_controls_ttl_controls"); LoadLine(mouseSense_title, "sttngs_controls_ttl_mouse");
+        //VALUES                                                    //screen
+        LoadLine(screenMode_picker.options[0], "sttngs_screen_mode_dd_fs"); LoadLine(screenMode_picker.options[1], "sttngs_screen_mode_dd_wfs");
+        LoadLine(screenMode_picker.options[2], "sttngs_screen_mode_dd_w"); screenMode_picker.RefreshShownValue();
+                                                                    //ui
+        LoadLine(highlight_toggle.GetComponentInChildren<Text>(), "sttngs_ui_desc_highlight");
+                                                                    //controls
+        LoadLine(forward_desc, "sttngs_controls_desc_forward"); LoadLine(right_desc, "sttngs_controls_desc_right");
+        LoadLine(backward_desc, "sttngs_controls_desc_backward"); LoadLine(left_desc, "sttngs_controls_desc_left");
+        LoadLine(pause_desc, "sttngs_controls_desc_pause"); LoadLine(interact_desc, "sttngs_controls_desc_interact");
+        LoadLine(rotClock_desc, "sttngs_controls_desc_clockrot"); LoadLine(rotUnclock_desc, "sttngs_controls_desc_unclockrot");
+        //BUTTONS                                                   //panel switch
+        LoadLine(screenSettingButton, "sttngs_main_btn_screen"); LoadLine(soundSettingButton, "sttngs_main_btn_audio");
+        LoadLine(uiSettingButton, "sttngs_main_btn_ui"); LoadLine(controlsSettingButton, "sttngs_main_btn_controls");
+        LoadLine(creditsButton, "sttngs_main_btn_credits");         //closing
+        LoadLine(closeButton, "sttngs_main_btn_close"); LoadLine(saveButton, "sttngs_main_btn_save");
     }
     private void ReloadLines()
     {
@@ -145,6 +125,7 @@ public class SettingsMenuController : MonoBehaviour
     public void Close(bool save)
     {
         mainSettingPanel.SetActive(false);
+        currentSettingPanel.SetActive(false);
         soundSettingPanel.SetActive(true);
         currentSettingPanel = soundSettingPanel;
         if (save)
@@ -348,5 +329,18 @@ public class SettingsMenuController : MonoBehaviour
     private void InloadControls()
     {
         gameSettings.SetControls(controls_picker.value);
+    }
+    //DRY function
+    private void LoadLine(Text textField, string localId)
+    {
+        textField.text = localization.GetLine(localId);
+    }
+    private void LoadLine(Dropdown.OptionData textField, string localId)
+    {
+        textField.text = localization.GetLine(localId);
+    }
+    private void LoadLine(Button textField, string localId)
+    {
+        textField.GetComponentInChildren<Text>().text = localization.GetLine(localId);
     }
 }
