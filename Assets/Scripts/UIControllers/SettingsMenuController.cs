@@ -10,19 +10,18 @@ public class SettingsMenuController : MonoBehaviour
     [SerializeField] private LangDictionary langDictionary;
 
     [Header("Other panels")]
-    [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject gameLoadMenu;
+    [SerializeField] private GameObject mainMenu; [SerializeField] private GameObject gameLoadMenu;
 
     [Header("SETTING FIELDS")]
     [Header("Screen Setting Fields")]
     //titles
-    [SerializeField] private Text screenMode_title, screenResolution_title, frameRate_title;
+    [SerializeField] private Text screenMode_title; [SerializeField] private Text screenResolution_title, frameRate_title;
     //dropdowns
-    [SerializeField] private Dropdown screenMode_picker, screenResolution_picker, frameRate_picker;
+    [SerializeField] private Dropdown screenMode_picker; [SerializeField] private Dropdown screenResolution_picker, frameRate_picker;
 
     [Header("Sound Setting Fields")]
     //titles
-    [SerializeField] private Text soundVolume_title, musicVolume_title, envVolume_title;
+    [SerializeField] private Text soundVolume_title; [SerializeField] private Text musicVolume_title, envVolume_title;
     //sliders
     [SerializeField] private Slider soundVolume_slider, musicVolume_slider, envVolume_slider;
     //percents
@@ -30,7 +29,7 @@ public class SettingsMenuController : MonoBehaviour
 
     [Header("UI Setting Fields")]
     //titles
-    [SerializeField] private Text language_title, fontSize_title, highlight_title;
+    [SerializeField] private Text language_title; [SerializeField] private Text fontSize_title, highlight_title;
     //pickers
     [SerializeField] private Dropdown language_picker;
     [SerializeField] private Slider fontSize_slider;
@@ -40,7 +39,7 @@ public class SettingsMenuController : MonoBehaviour
 
     [Header("Controls Setting Fields")]
     //titles
-    [SerializeField] private Text controls_title, mouseSense_title;
+    [SerializeField] private Text controls_title; [SerializeField] private Text mouseSense_title;
     //pickers
     [SerializeField] private Dropdown controls_picker;
     [SerializeField] private Slider mouseSense_slider;
@@ -54,12 +53,14 @@ public class SettingsMenuController : MonoBehaviour
 
     [Header("SETTING PICKERS")]
     [Header("Setting Panels")]
-    [SerializeField] private GameObject screenSettingPanel, soundSettingPanel, uiSettingPanel, controlsSettingPanel;
+    [SerializeField] private GameObject screenSettingPanel;
+    [SerializeField] private GameObject soundSettingPanel, uiSettingPanel, controlsSettingPanel;
     [Header("Setting Choose Buttons")]
-    [SerializeField] private Button screenSettingButton, soundSettingButton, uiSettingButton, controlsSettingButton, creditsButton;
+    [SerializeField] private Button screenSettingButton;
+    [SerializeField] private Button soundSettingButton, uiSettingButton, controlsSettingButton, creditsButton;
 
     [Header("SETTING CLOSERS")]
-    [SerializeField] private Button closeButton, saveButton;
+    [SerializeField] private Button closeButton; [SerializeField] private Button saveButton;
     [SerializeField] private GameObject mainSettingPanel;
 
 
